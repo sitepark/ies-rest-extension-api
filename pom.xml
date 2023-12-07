@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sitepark.ies.extensions</groupId>
 	<artifactId>ies-rest-extension-api</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>IES REST extension api</name>
 	<description>API to extend the REST functionality of the IES</description>
 	<licenses>
@@ -14,7 +14,7 @@
 	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.release>21</maven.compiler.release>
 		<jetty.version>10.0.15</jetty.version>
 		<jersey.version>2.39.1</jersey.version>
 	</properties>
