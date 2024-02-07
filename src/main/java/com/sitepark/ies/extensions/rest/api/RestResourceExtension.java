@@ -4,8 +4,7 @@ import java.util.List;
 
 public interface RestResourceExtension {
 
-	List<String> getResourcePackages();
+  List<String> getResourcePackages();
 
-	List<Class<?>> getResourceClasses();
-
+  List<Class<?>> getResourceClasses();
 }
