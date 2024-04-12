@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sitepark.ies.extensions</groupId>
 	<artifactId>ies-rest-extension-api</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>IES REST extension api</name>
 	<description>API to extend the REST functionality of the IES</description>
 	<url>https://github.com/sitepark/ies-rest-extension-api</url>
@@ -30,7 +30,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:sitepark/ies-rest-extension-api.git</connection>
 		<developerConnection>scm:git:git@github.com:sitepark/ies-rest-extension-api.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.0.0</tag>
 		<url>https://github.com/sitepark/ies-rest-extension-api</url>
 	</scm>
 	<properties>
@@ -179,7 +179,7 @@
 						</goals>
 						<configuration>
 							<rules>
-								<banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
+								<banDuplicatePomDependencyVersions />
 								<requireMavenVersion>
 									<version>3.8</version>
 								</requireMavenVersion>
@@ -201,7 +201,7 @@
 									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
 									<message>No Snapshots Allowed!</message>
 								</requireReleaseDeps>
-								<requireReleaseDepsInPlugins implementation="org.apache.maven.enforcer.rule.requireReleaseDepsInPlugins"></requireReleaseDepsInPlugins>
+								<requireReleaseDepsInPlugins implementation="org.apache.maven.enforcer.rule.requireReleaseDepsInPlugins" />
 							</rules>
 							<fail>true</fail>
 						</configuration>
@@ -265,7 +265,7 @@
 							<reflowLongStrings>true</reflowLongStrings>
 							<formatJavadoc>false</formatJavadoc>
 						</googleJavaFormat>
-						<formatAnnotations></formatAnnotations>
+						<formatAnnotations />
 					</java>
 					<pom>
 						<!-- These are the defaults, you can override if you want -->
