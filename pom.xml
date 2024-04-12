@@ -13,6 +13,20 @@
 			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<id>veltrup@sitepark</id>
+			<name>Holger Veltrup</name>
+			<email>veltrup@sitepark.com</email>
+			<url>https://github.com/sitepark-veltrup</url>
+			<organization>Sitepark</organization>
+			<organizationUrl>https://www.sitepark.com</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Berlin</timezone>
+		</developer>
+	</developers>
 	<scm>
 		<connection>scm:git:git@github.com:sitepark/ies-rest-extension-api.git</connection>
 		<developerConnection>scm:git:git@github.com:sitepark/ies-rest-extension-api.git</developerConnection>
@@ -86,6 +100,10 @@
 				<version>3.13.0</version>
 			</plugin>
 			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
@@ -93,8 +111,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.1</version>
-				<!--
+				<version>3.3.0</version>
+				<configuration>
+					<doclint>all,-missing</doclint>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -103,12 +123,53 @@
 						</goals>
 					</execution>
 				</executions>
-				-->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.6.3</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<phase>verify</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<scmCommentPrefix>ci(release):</scmCommentPrefix>
+					<tagNameFormat>@{project.version}</tagNameFormat>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>3.4.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>io.github.thefolle</groupId>
+						<artifactId>glowing-waffle</artifactId>
+						<version>1.2.0</version>
+					</dependency>
+				</dependencies>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -117,10 +178,31 @@
 						</goals>
 						<configuration>
 							<rules>
+								<banDuplicatePomDependencyVersions />
 								<requireMavenVersion>
 									<version>3.8</version>
 								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>21</version>
+								</requireJavaVersion>
 							</rules>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify-release</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<phase>none</phase>
+						<configuration>
+							<rules>
+								<requireReleaseDeps>
+									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+									<message>No Snapshots Allowed!</message>
+								</requireReleaseDeps>
+								<requireReleaseDepsInPlugins implementation="org.apache.maven.enforcer.rule.requireReleaseDepsInPlugins" />
+							</rules>
+							<fail>true</fail>
 						</configuration>
 					</execution>
 				</executions>
@@ -128,7 +210,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
+				<version>0.8.11</version>
 				<executions>
 					<execution>
 						<goals>
@@ -182,7 +264,7 @@
 							<reflowLongStrings>true</reflowLongStrings>
 							<formatJavadoc>false</formatJavadoc>
 						</googleJavaFormat>
-						<formatAnnotations></formatAnnotations>
+						<formatAnnotations />
 					</java>
 					<pom>
 						<!-- These are the defaults, you can override if you want -->
@@ -209,7 +291,7 @@
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.8.4.0</version>
+				<version>4.8.3.1</version>
 				<configuration>
 					<effort>Max</effort>
 					<threshold>Low</threshold>
@@ -222,7 +304,7 @@
 					<dependency>
 						<groupId>com.github.spotbugs</groupId>
 						<artifactId>spotbugs</artifactId>
-						<version>4.8.4</version>
+						<version>4.8.3</version>
 					</dependency>
 				</dependencies>
 				<executions>
@@ -258,6 +340,7 @@
 					</execution>
 				</executions>
 			</plugin>
+		</plugins>
 		</plugins>
 	</build>
 	<profiles>
