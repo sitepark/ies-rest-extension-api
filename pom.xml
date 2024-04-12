@@ -6,6 +6,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>IES REST extension api</name>
 	<description>API to extend the REST functionality of the IES</description>
+	<url>https://github.com/sitepark/ies-rest-extension-api</url>
 	<licenses>
 		<license>
 			<name>The MIT License</name>
@@ -256,4 +257,24 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>nexus-staging-release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.13</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
