@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sitepark.ies.extensions</groupId>
 	<artifactId>ies-rest-extension-api</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<name>IES REST extension api</name>
 	<description>API to extend the REST functionality of the IES</description>
 	<url>https://github.com/sitepark/ies-rest-extension-api</url>
@@ -70,12 +70,6 @@
 			<groupId>org.jspecify</groupId>
 			<artifactId>jspecify</artifactId>
 			<version>1.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.1.1</version>
 		</dependency>
 
 		<dependency>
